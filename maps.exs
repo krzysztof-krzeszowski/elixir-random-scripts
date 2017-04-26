@@ -20,5 +20,11 @@ defmodule Maps do
     # add new key: value pair
     movies = Map.put_new movies, :tarantino, "Pulp Fiction"
     IO.inspect movies 
+
+    # create map from two lists
+    l1 = ["a", "b", "c", "d"]
+    l2 = [1, 2, 3, 4]
+    l3 = Enum.zip(l1, l2) |> Enum.into(%{})
+    IO.inspect l3
   end
 end
