@@ -6,6 +6,7 @@ defmodule Integrate do
       iex> integrate(&(2 * :math.pow(&1, 2)), 0, 1, 0.00001) |> Float.round(6)
       0.666677
   """
-  def integrate(_, x, xmax, _) when x >= xmax, do: 0
-  def integrate(f, x, xmax, dx), do: f.(x) * dx + integrate(f, x + dx, xmax, dx)
+  def integrate(f, x, x_max, dx), do: integrate(f, x, x_max, dx, 0)
+  def integrate(_, x, xmax, _, acc) when x >= xmax, do: acc
+  def integrate(f, x, xmax, dx, acc), do: integrate(f, x + dx, xmax, dx, acc + f.(x) * dx)
 end
